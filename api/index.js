@@ -5,11 +5,11 @@ const reverse = require("./reverse");
 const sum = require("./sum");
 app.use(express.json());
 
-app.get('/c', (req, res) => {
+app.get('/api/c', (req, res) => {
     let {a,b} = req.query;
     res.send(JSON.stringify((sum(parseInt(a,10) , parseInt(b,10)))));
 });
-app.get('/', (req, res) => {
+app.get('/api', (req, res) => {
     let r = {
         hostname:req.hostname,
         ip:req.ip,
@@ -18,16 +18,17 @@ app.get('/', (req, res) => {
     };
     res.send(JSON.stringify(r));
 });
-app.post('/',(req, res) => {
+app.post('/api',(req, res) => {
     res.send(JSON.stringify({
         message:'hello',
         body:req.body.a,
     }));
 });
-app.post('/b',(req, res) => {
+app.post('/api/b',(req, res) => {
     res.send(JSON.stringify({
         message: process.env.GREETING_TEXT,
         body:reverse(req.body.a),
     }));
 });
-app.listen(3000, () => console.log('Server ready'));
+module.exports = a;
+//app.listen(3000, () => console.log('Server ready'));
